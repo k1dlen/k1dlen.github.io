@@ -1,0 +1,276 @@
+/* === Import Bootstrap functions and variables and mixins */
+@import "../bootstrap/scss/functions";
+@import "../bootstrap/scss/variables";
+@import "../bootstrap/scss/mixins";
+/*--------------------------------------------------------------------*/
+/* Change theme-colors */
+
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+// Цветовая палитра
+$theme-colors: (
+    light: #e6e6fa,
+    // Светло-фиолетовый (лаванда)
+    primary: #4b0082,
+    // Индиго
+    secondary: #ff6347,
+    // Томат (оранжевый оттенок)
+    success: #5d8aa8,
+    // Воздушный синий
+    info: #87ceeb,
+    // Небесно-голубой
+    warning: #ffcc00,
+    // Яркий оранжевый (желтоватый)
+    danger: #8b0000 // Темно-красный (классический для опасности)
+);
+
+// Дополнительные цвета
+$theme-colors: map-merge($theme-colors, (deep-purple-color: #2f0442, // Глубокий фиолетовый
+            accent-color: #f2a65e // Нежно-оранжевый
+        ));
+
+// Определение базового размера отступов
+$spacer: 1rem; // Базовый отступ равен 1rem
+$spacers: (
+    0: 0,
+    1: $spacer * 0.25,
+    // Малый отступ
+    2: $spacer * 0.5,
+    // Средний отступ
+    3: $spacer,
+    // Базовый отступ
+    4: $spacer * 1.5,
+    // Большой отступ
+    5: $spacer * 3 // Очень большой отступ
+);
+
+// Скругление углов и тени для элементов
+$border-radius: 0.5rem; // Общий радиус скругления
+$border-radius-lg: 1rem; // Радиус для крупных элементов
+$border-radius-sm: 0.25rem; // Радиус для мелких элементов
+
+// Тени
+$box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); // Основная тень
+$box-shadow-sm: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); // Тень для мелких элементов
+
+// Стили для подписей изображений (figcaption)
+figcaption {
+    font-size: 0.875rem; // Размер шрифта для подписей
+    color: $gray-600; // Цвет текста подписей
+    margin-top: $spacer / 2; // Отступ сверху
+}
+
+// Стили для изображений
+img {
+    border: 2px solid $gray-300; // Рамка вокруг изображений
+    padding: $spacer / 4; // Отступы внутри рамки
+    border-radius: $border-radius; // Скругление углов
+}
+
+// Стили для заголовков
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', sans-serif; // Основной шрифт для заголовков
+    font-weight: bold; // Жирный текст для заголовков
+    color: map-get($theme-colors, primary); // Основной цвет заголовков (индиго)
+}
+
+.lead {
+  font-family: 'Lora', serif; // Применяем тот же шрифт для ведущего текста
+  font-size: 1.25rem; // Размер шрифта для ведущего текста
+  font-weight: 300;
+  color: $secondary; // Второстепенный цвет
+}
+// Основной фон страницы
+body {
+    background: linear-gradient(to right, #e6e6fa, #87ceeb); // Лёгкий градиентный фон
+    font-family: 'Lora', serif; // Общий шрифт для сайта
+    color: #333; // Основной цвет текста
+}
+
+
+// Основные стили для ссылок
+a {
+    color: map-get($theme-colors, primary); // Основной цвет ссылок
+    text-decoration: none;
+
+    &:hover {
+        color: map-get($theme-colors, secondary); // Цвет при наведении (томат)
+        text-decoration: underline;
+    }
+}
+
+// Точки останова (breakpoints) для адаптивного дизайна
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    // Малые экраны
+    md: 768px,
+    // Средние экраны
+    lg: 992px,
+    // Большие экраны
+    xl: 1440px // Очень большие экраны
+);
+
+// Максимальные размеры контейнеров для разных точек останова
+$container-max-widths: (
+    sm: 540px,
+    // Для малых экранов
+    md: 720px,
+    // Для средних экранов
+    lg: 960px,
+    // Для больших экранов
+    xl: 1440px // Для очень больших экранов
+);
+
+// Стили для элементов форм
+input,
+select,
+textarea {
+    background-color: $light; // Фон для полей ввода
+    border: 1px solid $gray-300; // Рамка для полей
+    border-radius: $border-radius; // Скругление углов
+    padding: $spacer / 2; // Внутренние отступы
+
+    &:focus {
+        border-color: $primary; // Цвет рамки при фокусе
+        box-shadow: 0 0 0 0.2rem rgba($primary, 0.25); // Тень при фокусе
+    }
+}
+
+// Стили для кнопок
+.btn-primary {
+    background-color: map-get($theme-colors, primary); // Основная кнопка - индиго
+    border: none;
+&:hover {
+        background-color: map-get($theme-colors, secondary); // Томатовый при наведении
+    }
+}
+
+.btn-outline-primary {
+    color: map-get($theme-colors, primary);
+    border-color: map-get($theme-colors, primary);
+
+    &:hover {
+        color: #fff;
+        background-color: map-get($theme-colors, primary);
+    }
+}
+
+// Навигация
+.navbar {
+    background-color: map-get($theme-colors, light); // Светлый фон для навбара
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); // Легкая тень
+}
+
+.nav-link {
+    color: map-get($theme-colors, primary); // Цвет ссылок в навигации
+
+    &:hover {
+        color: map-get($theme-colors, secondary); // Цвет при наведении
+    }
+}
+
+// Основной блок с изображением и текстом
+.bg-light {
+    background-color: map-get($theme-colors, light); // Легкий светло-фиолетовый фон
+    padding: 3rem 0; // Отступы сверху и снизу
+}
+
+.display-1 {
+    color: map-get($theme-colors, deep-purple-color); // Глубокий фиолетовый цвет для заголовка
+}
+
+.lead {
+    color: map-get($theme-colors, secondary); // Вторичный цвет текста
+}
+
+// Карточки
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    background-color: map-get($theme-colors, primary) !important; // Принудительно применяем цвет фона
+    color: #fff !important; // Принудительно применяем цвет текста
+    font-weight: bold;
+    padding: 1rem;
+    text-align: center;
+}
+
+// Стиль для кнопок в карточках
+.card .btn {
+    background-color: map-get($theme-colors, accent-color); // Нежно-оранжевый цвет для кнопок
+    color: #000; // Чёрный текст для кнопок
+    border: none; // Убираем рамку
+    transition: background-color 0.3s; // Плавный переход цвета
+
+    &:hover {
+        background-color: darken(map-get($theme-colors, accent-color), 10%); // Утемняем цвет при наведении
+        color: #fff; // Белый текст при наведении
+    }
+}
+
+
+// Основной цвет текста карточек
+.card-body {
+    color: map-get($theme-colors, light); // Используем светло-фиолетовый для текста
+    background-color: rgba(255, 255, 255, 0.8); // Полупрозрачный белый фон для улучшения читабельности
+}
+
+// Заголовок карточки
+.card-title {
+    color: map-get($theme-colors, primary); // Индиго для заголовка карточки
+    font-weight: bold; // Жирный текст
+}
+
+// Описание карточки
+.card-text {
+    color: #555; // Темный серый для текста описания (более нейтральный)
+    font-size: 0.9rem; // Уменьшенный размер шрифта для описания
+  }
+
+
+.card-footer {
+    background-color: map-get($theme-colors, light);
+}
+
+// Футер
+footer {
+    background-color: map-get($theme-colors, light);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.footer-links a {
+    color: map-get($theme-colors, primary);
+
+    &:hover {
+        color: map-get($theme-colors, secondary);
+    }
+}
+
+// Тени для элементов
+$box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+
+/*--------------------------------------------------------------------*/
+/* === Bootsrap Main SCSS === */
+@import "../bootstrap/scss/bootstrap";
+/*--------------------------------------------------------------------*/
